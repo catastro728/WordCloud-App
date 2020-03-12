@@ -2,8 +2,6 @@ node_modules
 build
 note.txt
 .vscode
-yarn.lock
-yarn-error.log
 .firebase/
 firebase.json
 .firebaserc

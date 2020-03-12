@@ -74,7 +74,9 @@ class Words extends React.Component {
     }
 
     handleDialogToggle = () => this.setState({
-        dialog: !this.state.dialog
+        dialog: !this.state.dialog,
+        word: '',
+        weight: ''
     })
     handleValueChange = (input) => {
         let nextState = {};

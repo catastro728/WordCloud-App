@@ -16,7 +16,7 @@ class App extends React.Component {
                         <Route exact path='/' component={Home}></Route>
                         <Route exact path='/texts' component={Texts}></Route>
                         <Route exact path='/words' component={Words}></Route>
-                        <Route exact path='/detail/:textId' component={Detail}></Route>
+                        <Route exact path='/detail/:textID' component={Detail}></Route>
                     </div>
                 </AppShell>
             </Router>

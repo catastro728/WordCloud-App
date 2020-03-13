@@ -9,6 +9,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
+import DialogContent from '@material-ui/core/DialogContent';
+import TextField from '@material-ui/core/TextField';
 
 const databaseURL = "https://wordcloud-f11ee.firebaseio.com";
 const apiURL = "http://localhost:5000"
@@ -29,7 +31,9 @@ class Detail extends React.Component {
             dialog: false,
             textContent: '',
             words: {},
-            imageUrl: null
+            imageUrl: null,
+            maxCount: 30,
+            minLength: 1
         }
     }
 
@@ -95,7 +99,9 @@ class Detail extends React.Component {
             text: this.state.textContent,
             maxCount: 30,
             minLength: 1,
-            words: this.state.words
+            words: this.state.words,
+            maxCount: this.state.maxCount,
+            minLength: this.state.minLength
         }
         this.handleDialogToggle();
 
@@ -107,6 +113,18 @@ class Detail extends React.Component {
                 return;
             }
         this._post(wordCloud);
+    }
+    handleValueChange = (input) => {
+        let nextState = {};
+        if(input.target.value % 1 === 0){   //숫자 체크
+            if(input.target.value < 1){
+                nextState[e.target.name] = 1;
+            }
+            else{
+                nextState[e.target.name] = input.target.value;
+            }
+        }
+        this.setState(nextState)
     }
 
     render() {
@@ -132,12 +150,17 @@ class Detail extends React.Component {
                 </Fab>
                 <Dialog open={this.state.dialog} onClose={this.handleDialogToggle}>
                     <DialogTitle>워드 클라우드 생성</DialogTitle>
+                    <DialogContent>
+                        <TextField label="최대 단어 개수" type="number" name="maxCount" value={this.state.maxCount} onChange={this.handleValueChange}/><br/>
+                        <TextField label="최소 단어 길이" type="number" name="minLength" value={this.state.minLength} onChange={this.handleValueChange}/><br/>
+                    </DialogContent>
                     <DialogActions>
                         <Button variant="contained" color="primary" onClick={this.handleSubmit}>
                             {(this.state.imageUrl == 'NONE') ? '만들기' : '다시 만들기'}
                         </Button>
                         <Button variant="outlined" color="primary" onClick={this.handleDialogToggle}>닫기</Button>
                     </DialogActions>
+
                 </Dialog>
             </div>
         )

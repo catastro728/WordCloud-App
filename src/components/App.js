@@ -5,6 +5,7 @@ import Home from './Home';
 import Texts from './Texts';
 import Words from './Words';
 import Detail from './Detail';
+import TextContent from './TextContent';
 
 class App extends React.Component {
 
@@ -17,6 +18,7 @@ class App extends React.Component {
                         <Route exact path='/texts' component={Texts}></Route>
                         <Route exact path='/words' component={Words}></Route>
                         <Route exact path='/detail/:textID' component={Detail}></Route>
+                        <Route exact path='/TextContent/:textID' component={TextContent}></Route>
                     </div>
                 </AppShell>
             </Router>

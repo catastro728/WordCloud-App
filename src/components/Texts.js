@@ -24,6 +24,9 @@ const styles = theme => ({
         position: 'fixed',
         bottom: '20px',
         right: '20px'
+    },
+    textMargin: {
+        margin: '10px'
     }
 })
 
@@ -130,21 +133,26 @@ class Texts extends React.Component {
                     const text = this.state.texts[id];
                     return (
                         <Card key={id}>
-                            <Typography color="textSecondary" gutterBottom>
+                            <Typography color="textSecondary" gutterBottom className={classes.textMargin}>
                                 내용 : {text.textContent.slice(0, 24)}...
                             </Typography>
                             <Grid container>    
                                 <Grid item xs={6}>
-                                    <Typography variant="h5" component="h2">
+                                    <Typography variant="h5" component="h2" className={classes.textMargin}>
                                         {text.textName.substring(0,14) + "..."}
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={2}>
                                     <Link component={RouterLink} to={"detail/" + id}>
-                                        <Button variant="contained" color="primary">보기</Button>
+                                        <Button variant="contained" color="primary">Image</Button>
                                     </Link>
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={2}>
+                                    <Link component={RouterLink} to={"textContent/" + id}>
+                                        <Button variant="contained" color="primary">Text</Button>
+                                    </Link>
+                                </Grid>
+                                <Grid item xs={2}>
                                     <Link>
                                         <Button variant="contained" color="primary" onClick={() => this.handleDelete(id)}>삭제</Button>
                                     </Link>

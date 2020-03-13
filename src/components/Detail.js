@@ -32,7 +32,7 @@ class Detail extends React.Component {
             textContent: '',
             words: {},
             imageUrl: null,
-            maxCount: 30,
+            maxCount: 20,
             minLength: 1
         }
     }
@@ -97,8 +97,6 @@ class Detail extends React.Component {
         const wordCloud = {
             textID: this.props.match.params.textID,
             text: this.state.textContent,
-            maxCount: 30,
-            minLength: 1,
             words: this.state.words,
             maxCount: this.state.maxCount,
             minLength: this.state.minLength
@@ -118,10 +116,10 @@ class Detail extends React.Component {
         let nextState = {};
         if(input.target.value % 1 === 0){   //숫자 체크
             if(input.target.value < 1){
-                nextState[e.target.name] = 1;
+                nextState[input.target.name] = 1;
             }
             else{
-                nextState[e.target.name] = input.target.value;
+                nextState[input.target.name] = input.target.value;
             }
         }
         this.setState(nextState)
@@ -140,7 +138,7 @@ class Detail extends React.Component {
                                 '워드클라우드 이미지를 불러오고 있습니다.' : 
                                 ((this.state.imageUrl == 'NONE') ? 
                                     '해당 텍스트에 대한 워드클라우드를 만들어야 합니다.' :
-                                    <img src={this.state.imageUrl + '&random=' + Math.random()} style={{width: '100%'}}/>)) :
+                                    <img src={this.state.imageUrl + '&random=' + Math.random()} style={{width: '70%'}}/>)) :
                             ''
                         }
                     </CardContent>
